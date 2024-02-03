@@ -1,17 +1,21 @@
 {{ block "index" . }}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="css/style.css" rel="stylesheet" />
+        <script
+            src="https://unpkg.com/htmx.org@1.9.10"
+            integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+            crossorigin="anonymous"
+        ></script>
+        <title>HTMX</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/style.css" rel="stylesheet">
-    <title>HTMX</title>
-</head>
-
-<body>
-    Count {{ .Count }}
-</body>
-
+    <body>
+        <div id="count">{{ template "count" .}}</div>
+        <button hx-target="#count" hx-post="/count">Count</button>
+    </body>
 </html>
-{{ end }}
+{{ end }} {{ block "count" . }} Count {{ .Count }} {{ end }}
